@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
+<link href="catalog/view/theme/babykids/stylesheet/stylesheet.css" rel="stylesheet">
+{% for style in styles %}
+<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+
+
+<!-- Custom css -->
+{% if custom_css %}
+<style>
+{{ custom_css_content }}
+</style>
+ {% endif %}
+<!-- Custom script -->
+{% if custom_javascript %}
+<script type="text/javascript">
+$(document).ready(function() {
+{{ custom_javascript_content }}
+});
+</script>
+<!-- Custom Code -->
+ {% endif %}
+{% if custom_code %}
+{{ custom_code_content }}
+ {% endif %}
+<!-- Design -->
+<style>
+body{
+  
+   background-color: {{ backgroundcolor }} ;
+   color: {{ module_inovaby_textcolor }};
+}
+a {
+	color: {{ module_inovaby_linkcolor }};
+}
+a:hover {
+    color: {{ module_inovaby_linkhover }};
+}
+h1, h2, h3, h4, h5, h6 {
+	color: {{ module_inovaby_titlecolor }};
+}
+.dropdown-menu li > a:hover {
+	color: {{ module_inovaby_dropdownhv }};
+	background: {{ module_inovaby_dropdownbghover }};
+}
+#top {
+	background: {{ module_inovaby_topnavbg }};
+	border-bottom-width:{{ module_inovaby_topnavline }};
+    border-bottom-color:{{ module_inovaby_topnavlinecolor }};
+}
+#top #form-currency .currency-select:hover,
+#top #form-language .language-select:hover {
+	color: {{ module_inovaby_languagecolorhv }};
+    background:{{ module_inovaby_languagehvbg }};
+}
+#top .btn-link, #top-links li, #top-links a {
+	color: {{ module_inovaby_toplink }};
+}
+#top .btn-link:hover, #top-links a:hover {
+	color: {{ module_inovaby_toplinkhover }};
+}
+#top .fa{
+   font-size:{{ module_inovaby_topiconsize }} ;
+}
+#top-links .dropdown-menu a:hover {
+	color: {{ module_inovaby_topdropdownhv }};
+}
+#search .input-lg {
+    background: {{ module_inovaby_searchinbg }};
+}
+#search .btn-lg {
+    background: {{ module_inovaby_searchbutton }};
+}
+#search .fa {
+    font-size: {{ module_inovaby_searchiconsize }};
+}
+#cart > .btn {
+	color: {{ module_inovaby_topcartcolor }};
+    background:{{ module_inovaby_topcartbg }};
+}
+#cart.open > .btn {
+    background:{{ module_inovaby_topcartopenbg }};
+	border-width:{{ module_inovaby_topcartopenbosize }}   ;
+    border-color:{{ module_inovaby_topcartopenborder }};
+	color: {{ module_inovaby_topcartopen }};
+}
+#menu {
+	background: {{ module_inovaby_topmenbg }};
+	border-color: {{ module_inovaby_topmenbocolor }};
+    border-width:{{ module_inovaby_topmenborder }};
+}
+#menu .nav > li > a {
+	color: {{ module_inovaby_menulicolor }};
+}
+#menu .nav > li > a:hover, #menu .nav > li.open > a {
+	background-color: {{ module_inovaby_menulibghover }};
+    color: {{ module_inovaby_menulihover }};
+}
+#menu .dropdown-menu {
+	background: {{ module_inovaby_menuinnerbg }};
+}
+#menu .dropdown-inner a {
+	color: {{ module_inovaby_menuinnerlink }};
+}
+#menu .dropdown-inner li a:hover {
+	color: {{ module_inovaby_menuinnerlinkhover }};
+    background: {{ module_inovaby_menuinnerbghover }};
+}
+#menu .see-all{
+	color: {{ module_inovaby_menushowalllink }};
+	background: {{ module_inovaby_menushowallbg }};
+}
+#menu .see-all:hover{
+	color: {{ module_inovaby_menushowalllinkhover }};
+	background: {{ module_inovaby_menushowallbghover }};
+}
+.product-thumb {
+   border-color: {{ module_inovaby_product_list_bordercolor }};
+   border-width:{{ module_inovaby_product_list_bordersize }};
+   background: {{ module_inovaby_product_list_bg }};
+}
+.product-thumb h4 a{
+  	color: {{ module_inovaby_product_name }};
+}
+.product-thumb p{
+  	color: {{ module_inovaby_product_description }};
+}
+.product-thumb .price {
+   color: {{ module_inovaby_product_price }};
+}
+.product-thumb .button-group {
+	border-top-width: {{ module_inovaby_product_btgroupborder }};
+    border-top-color: {{ module_inovaby_product_btgroupcolor }};
+	background: {{ module_inovaby_product_btgroup }};
+}
+.product-thumb .button-group button {
+	background: {{ module_inovaby_product_cartbg }};
+	color: {{ module_inovaby_product_cartcolor }};
+}
+.product-thumb .button-group button:hover {
+	color: {{ module_inovaby_product_cartcolorhover }};
+	background: {{ module_inovaby_product_cartbghover }};
+}
+.product-thumb .button-group button + button {
+	border-left-width: {{ module_inovaby_product_wishlistborder }};
+    border-left-color:{{ module_inovaby_product_wishlistbordercolor }};
+    background:   {{ module_inovaby_product_wishlistbg }};
+    color: {{ module_inovaby_product_wishlistcolor }};
+}
+.product-thumb .button-group button + button:hover {
+    background:   {{ module_inovaby_product_wishlistbghover }};
+    color: {{ module_inovaby_product_wishlistcolorhover }};
+}
+footer {
+	background: {{ module_inovaby_footer_bg }};
+	border-top-width: {{ module_inovaby_footer_border }};
+    border-top-color:{{ module_inovaby_footer_bordercolor }};
+	color: {{ module_inovaby_footer_textcolor }};
+}
+footer a {
+	color: {{ module_inovaby_footer_linkcolor }};
+}
+footer a:hover {
+	color: {{ module_inovaby_footer_linkhover }};
+}
+footer h5 {
+	color: {{ module_inovaby_footer_titlecolor }};   
+}
+</style>
+
+
+
+</head>
+<body>
+<div class="hder1">
+<nav id="top">
+  <div class="container">{{ currency }}
+    {{ language }}
+    <div id="top-links" class="nav pull-right">
+      <ul class="list-inline">
+        <li><a href="{{ contact }}"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md">{{ telephone }}</span></li>
+        <li class="dropdown"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_account }}</span> <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            {% if logged %}
+            <li><a href="{{ account }}">{{ text_account }}</a></li>
+            <li><a href="{{ order }}">{{ text_order }}</a></li>
+            <li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+            <li><a href="{{ download }}">{{ text_download }}</a></li>
+            <li><a href="{{ logout }}">{{ text_logout }}</a></li>
+            {% else %}
+            <li><a href="{{ register }}">{{ text_register }}</a></li>
+            <li><a href="{{ login }}">{{ text_login }}</a></li>
+            {% endif %}
+          </ul>
+        </li>
+        <li><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_wishlist }}</span></a></li>
+        <li><a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_shopping_cart }}</span></a></li>
+        <li><a href="{{ checkout }}" title="{{ text_checkout }}"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_checkout }}</span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+ </div>
+<header class="hder1">
+  <div class="container">
+    <div class="row mg">
+      <div class="col-sm-4">
+        <div id="logo">{% if logo %}<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>{% else %}
+          <h1><a href="{{ home }}">{{ name }}</a></h1>
+          {% endif %}</div>
+      </div>
+      <div class="col-sm-5">{{ search }}</div>
+      <div class="col-sm-3">{{ cart }}</div>
+    </div>
+  </div>
+</header>
+{{ menu }}

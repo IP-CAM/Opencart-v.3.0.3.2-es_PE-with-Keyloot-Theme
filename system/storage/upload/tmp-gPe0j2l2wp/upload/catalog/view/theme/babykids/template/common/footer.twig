@@ -1,0 +1,120 @@
+<footer>
+  <div class="container">
+    <div class="row">
+     
+<div class="col-sm-3">
+        <h5>{{ text_extra }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+          <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+          <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+          <li><a href="{{ special }}">{{ text_special }}</a></li>
+        </ul>
+      </div>
+
+
+	 <div class="col-sm-3">
+        <h5>{{ text_account }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ account }}">{{ text_account }}</a></li>
+          <li><a href="{{ order }}">{{ text_order }}</a></li>
+          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <h5>{{ text_service }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+          <li><a href="{{ return }}">{{ text_return }}</a></li>
+          <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+		    
+        </ul>
+      </div>
+      
+      
+	    {% if informations %}
+      <div class="col-sm-3">
+        <h5>{{ text_information }}</h5>
+        <ul class="list-unstyled">
+         {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+	  
+	  
+	  
+    </div>
+	<div class="col-sm-10">
+	<ul class="socials">
+	 {% if facebook_link %}
+              <li><a class="fb" href="{{ facebook_link }}"  title="Facebook" target="_blank"><i class="social-icon fa fa-facebook fa-4x" aria-hidden="true"></i></a>
+          {% endif %}
+
+          {% if whatsapp_no %}
+              <a data-toggle="tooltip" title="{{ whatsapp_no }}" target="_blank"><i class="social-icon fa fa-whatsapp fa-4x" aria-hidden="true"></i></a>
+          {% endif %}
+
+          {% if instagram_link %}
+              <a href="{{ instagram_link }}" title="Instagram" target="_blank"><i class="social-icon fa fa-instagram fa-4x" aria-hidden="true"></i> </a>
+          {% endif %}
+
+          {% if youtube_link %}
+              <a href="{{ youtube_link }}" title="Youtube" target="_blank"><i class="social-icon fa fa-youtube-square" aria-hidden="true"></i> </a>
+          {% endif %}
+
+          {% if blog_link %}
+              <a href="{{ blog_link }}" title="Blog" target="_blank"><i class="social-icon fa fa-wordpress" aria-hidden="true"></i> </a>
+          {% endif %}
+
+          {% if twitter_link %}
+              <a href="{{ twitter_link }}"  title="Twitter" target="_blank"><i class="social-icon fa fa-twitter-square" aria-hidden="true"></i> </a>
+          {% endif %}
+
+          {% if pinterest_link %}
+            <a href="{{ pinterest_link }}" title="Pinterest" target="_new"><i class="social-icon fa fa-pinterest" aria-hidden="true"></i></a>
+          {% endif %}
+
+          {% if linkedin_link %}
+              <a href="{{ linkedin_link }}" title="Linkedin" target="_new"><i class="social-icon fa fa-linkedin" aria-hidden="true"></i></a></li> 
+          {% endif %} 
+		  
+		  {% if googlep_link %}
+              <a href="{{ googlep_link }}" title="Google" target="_new"><i class="social-icon fa fa-google-plus-square" aria-hidden="true"></i></a></li> 
+          {% endif %} 
+  </ul></div>
+ 
+    </footer>
+  <div class="footer-bottom ">
+		<div class="container">		
+		<div class="row">
+			<div class="col-lg-6 col-md-7 col-sm-12 col-xs-12 copyright-w">	
+				<div class="copyright">
+						{{ powered }}
+				
+				</div>	
+			</div>
+			 
+			<div class="col-lg-6 col-md-5 col-sm-12 col-xs-12 payment-w">
+			<i class="fa fa-cc-visa" title="Visa"></i>
+			<i class="fa fa-cc-mastercard"></i>
+            <i class="fa fa-cc-discover"></i>
+			<i class="fa fa-cc-paypal"></i>
+
+
+
+			</div>
+			
+		</div>
+		</div>
+
+		
+	</div>
+
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+
+</body></html>

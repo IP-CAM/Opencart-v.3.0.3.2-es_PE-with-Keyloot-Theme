@@ -1,0 +1,137 @@
+<div class="col-md-12" id="mensaje-error-culqi">
+</div>
+<!-- Modal HTML embedded directly into document -->
+<div id="loading" class="modal" style="display:hidden;">
+    <p><h5><strong>Procesando, espere por favor...!</strong></h5></p>
+    <!-- a href="#" rel="modal:close">Close</a -->
+</div>
+
+<div class="buttons">
+    <div class="pull-right">
+        <img src="{{ logo_visa }}">
+        <input type="button" value="{{ button_confirm }}" id="button-confirm" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+    </div>
+</div>
+<script>
+if(typeof Culqi == "undefined") {
+    $.getScript('https://checkout.culqi.com/js/v3', function() {
+        Culqi = new culqijs.Checkout();
+    });
+}
+$('head').append('<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet" type="text/css" />');
+$.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js', function() {});
+</script>
+{{ html_culqi }}
+<script>
+//var Culqi = new culqijs.Checkout();
+Culqi.publicKey = '{{ culqi_public_key }}';
+Culqi.options({
+        lang: 'auto',
+        modal: true,
+        installments: true,
+        style: {
+            bgcolor: '#f0f0f0',
+            maincolor: '#53D3CA',
+            disabledcolor: '#ffffff',
+            buttontext: '#ffffff',
+            maintext: '#4A4A4A',
+            desctext: '#4A4A4A',
+            /* logo: 'https://image.flaticon.com/icons/svg/25/25231.svg' */
+          }
+    });
+Culqi.settings({
+    title       : '{{ title }}',
+    currency    : '{{ currencyiso }}',
+    description : '{{ description }}',
+    amount      : {{ amount }}
+});
+$('#button-confirm').on('click', function(e) {
+    Culqi.open();
+    e.preventDefault();
+});
+
+
+function culqi() {
+    if (Culqi.token) {
+            $(document).ajaxStart(function(){
+                //console.log('ajaxStart');
+                run_waitMe();
+            });
+            $.ajax({
+                    type: 'POST',
+                    url: 'index.php?route=extension/payment/insite_culqi/send',
+                    data: { token: Culqi.token.id, cuotas: Culqi.token.metadata.installments,container:Culqi.token },
+                    datatype: 'json',
+                    beforeSend: function() {
+                        // setting a timeout
+                        //$(placeholder).addClass('loading');
+                        console.log('antes de enviar el AJAX');
+                        run_waitMe();
+                    },
+                    success: function(data) {
+                        var result = "";
+                        if(data.constructor == String){
+                            result = JSON.parse(data);
+                        }
+                        if(data.constructor == Object){
+                            result = JSON.parse(JSON.stringify(data));
+                        }
+                        console.log(JSON.stringify(data));
+
+                        if(result.object === 'charge'){
+                            window.location.href = result.redirect;
+                            Culqi.close();
+                        }
+                        if(result.object === 'error'){
+                            Culqi.close();
+                            stop_waitMe();
+                            mostrar_error(result.user_message);
+
+                            console.log(result.merchant_message);
+                        }
+                    },
+                    error: function(error) {
+                        resultdiv(error)
+                    }
+            });
+    } else if (Culqi.closeEvent){
+        console.log(Culqi.closeEvent);
+    }
+    else {
+        $('#mensaje-culqi').html(Culqi.error.merchant_message);
+        stop_waitMe()
+    }
+};
+
+function mostrar_error(mensaje){
+    /*
+    var msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
+        '<strong>ERROR!</strong> ' + mensaje +
+        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+        '<span aria-hidden="true">&times;</span></button></div>';
+    */
+    var msg = '<div class="alert alert-danger alert-dismissible">'+
+                '<strong>ERROR:</strong> ' + mensaje +'</div>';
+    $('#mensaje-error-culqi').html(msg);
+    console.log('error '+msg);
+}
+
+function run_waitMe(){
+    $("#loading").modal({
+        escapeClose: false,
+        clickClose: false,
+        showClose: false,
+        fadeDuration: 100
+    });
+}
+
+function stop_waitMe(){
+    $("#loading").modal('close');
+    $(".jquery-modal.blocker.current").css('display','none');
+    $('body').css('overflow-y','scroll');
+}
+
+
+
+</script>
+

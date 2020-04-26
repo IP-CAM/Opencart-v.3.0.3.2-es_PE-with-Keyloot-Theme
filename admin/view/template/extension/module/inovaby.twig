@@ -1,0 +1,635 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+           <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-design" data-toggle="tab"><i class="fa fa-pencil-square-o "></i> {{ tab_themepanel }}</a></li>
+                <li><a href="#tab-custom-css" data-toggle="tab"><i class="fa fa-code"></i> {{ tab_custom_css }}</a></li>
+            </ul>
+		  
+		   <div class="tab-content">
+
+            <div class="tab-pane active" id="tab-design">
+              <div class="row">
+                <div class="col-sm-2">
+                    <ul class="nav nav-pills nav-stacked" id="tab-design">
+                        <li class="active"><a href="#tab-general-design" data-toggle="tab">{{ text_general }}</a></li>
+                        <li><a href="#tab-top_bar" data-toggle="tab">{{ text_top_bar }}</a></li>
+                        <li><a href="#tab-top_search" data-toggle="tab">{{ text_top_search }}</a></li>
+                        <li><a href="#tab-top_cart" data-toggle="tab">{{ text_top_cart }}</a></li>
+                        <li><a href="#tab-top_menu" data-toggle="tab">{{ text_top_menu }}</a></li>
+                        <li><a href="#tab-product_list" data-toggle="tab">{{ text_product_list }}</a></li>
+                        <li><a href="#tab-footer" data-toggle="tab">{{ text_footer }}</a></li>
+						<li><a href="#tab-footer-social" data-toggle="tab">{{ text_footer_social }}</a></li>
+                    </ul>
+                </div>
+		   <div class="col-sm-10">
+                   <div class="tab-content">
+                      <div class="tab-pane active" id="tab-general-design">
+                         <div class="form-group">
+                            <div class="row">
+                             
+                                <label class="col-sm-2 control-label" for="input-backgroundcolor">{{ entry_backgroundcolor }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_backgroundcolor" value="{{ module_inovaby_backgroundcolor }}"  id="input-backgroundcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-textcolor">{{ text_color }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_textcolor" value="{{ module_inovaby_textcolor }}"  id="input-backgroundcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-dropdownhover"><span data-toggle="tooltip" title="{{ help_dropdownlihover }}">{{ text_dropdownhover }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_dropdownhv" value="{{ module_inovaby_dropdownhv }}"  id="input-dropdownhover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-dropdownbghover"><span data-toggle="tooltip" title="{{ help_dropdownlihover }}">{{ text_dropdownbg }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_dropdownbghover" value="{{ module_inovaby_dropdownbghover }}"  id="input-dropdownbghover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-linkcolor">{{ text_linkcolor }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_linkcolor" value="{{ module_inovaby_linkcolor }}"  id="input-linkcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-linkhover">{{ text_linkhover }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_linkhover" value="{{ module_inovaby_linkhover }}"  id="input-linkhover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ help_title }}">{{ text_titlecolor }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_titlecolor" value="{{ module_inovaby_titlecolor }}"  id="input-titlecolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+                      </div>
+
+                      <div class="tab-pane" id="tab-top_bar">
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-topnavbg">{{ text_topnavbg }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topnavbg" value="{{ module_inovaby_topnavbg }}"  id="input-topnavbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-topnavline"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_topborderline }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topnavline" value="{{ module_inovaby_topnavline }}" placeholder="{{ text_topborderline }}"  id="input-topnavline" size="6" class="form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label">{{ text_topcolorline }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topnavlinecolor" value="{{ module_inovaby_topnavlinecolor }}"  id="input-titlecolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-languagehvbg"><span data-toggle="tooltip" title="{{ help_languagebghv }}">{{ text_toplanguagebghv }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_languagehvbg" value="{{ module_inovaby_languagehvbg }}"  id="input-languagehvbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-languagecolorhv"><span data-toggle="tooltip" title="{{ help_languagebghv }}">{{ text_toplanguagecolorhv }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_languagecolorhv" value="{{ module_inovaby_languagecolorhv }}"  id="input-languagecolorhv" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-topiconsize"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_topiconsize }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topiconsize" value="{{ module_inovaby_topiconsize }}" placeholder="{{ text_topiconsize }}"  id="input-topiconsize" size="6" class="form-control"  />
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-toplink">{{ text_toplink }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_toplink" value="{{ module_inovaby_toplink }}"  id="input-toplink" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-toplinkhover">{{ text_toplinkhover }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_toplinkhover" value="{{ module_inovaby_toplinkhover }}"  id="input-toplinkhover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-topdropdownhv"><span data-toggle="tooltip" title="{{ help_accounthv }}">{{ text_topaccountcolorhv }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topdropdownhv" value="{{ module_inovaby_topdropdownhv }}"  id="input-topdropdownhv" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                            </div>
+                         </div>
+
+
+                      <div class="tab-pane" id="tab-top_search">
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-searchin">{{ text_searchinput }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_searchinbg" value="{{ module_inovaby_searchinbg }}"  id="input-searchin" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-searchbutton">{{ text_searchbutton }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_searchbutton" value="{{ module_inovaby_searchbutton }}"  id="input-searchbutton" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-searchiconsize"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_topiconsize }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_searchiconsize" value="{{ module_inovaby_searchiconsize }}" placeholder="{{ text_topiconsize }}"  id="input-searchiconsize" size="6" class="form-control"  />
+                                </div>
+
+                            </div>
+                         </div>
+                      </div>
+
+
+                      <div class="tab-pane" id="tab-top_cart">
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-cartcolor">{{ text_color }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topcartcolor" value="{{ module_inovaby_topcartcolor }}"  id="input-cartcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-cartbg">{{ text_background }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topcartbg" value="{{ module_inovaby_topcartbg }}"  id="input-cartbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-cartopen">{{ text_cartopen }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topcartopen" value="{{ module_inovaby_topcartopen }}"  id="input-cartopen" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+
+
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-cartopenbg">{{ text_cartopenbg }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topcartopenbg" value="{{ module_inovaby_topcartopenbg }}"  id="input-cartopenbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-cartopenborder">{{ text_cartopenborder }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topcartopenborder" value="{{ module_inovaby_topcartopenborder }}"  id="input-cartopenborder" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-cartopenbowith"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_cartopenborderwidth }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topcartopenbosize" value="{{ module_inovaby_topcartopenbosize }}"  id="input-cartopenbowith" placeholder="{{ text_cartopenborderwidth }}"  size="6" class="form-control"   />
+                                </div>
+                            </div>
+                         </div>
+
+                      </div>
+
+                      <div class="tab-pane" id="tab-top_menu">
+                      <legend><span data-toggle="tooltip" data-html="true" title="">{{ text_general }}</span></legend>
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-topmenubg">{{ text_background }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topmenbg" value="{{ module_inovaby_topmenbg }}"  id="input-topmenubg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-topmenborder"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_border }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topmenborder" value="{{ module_inovaby_topmenborder }}"  id="input-topmenborder" size="6" placeholder="{{ text_border }}"  size="6" class="form-control"   />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-topmenbordercolor">{{ text_bordercolor }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_topmenbocolor" value="{{ module_inovaby_topmenbocolor }}"  id="input-topmenbordercolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-topmenuli">{{ text_toplink }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menulicolor" value="{{ module_inovaby_menulicolor }}"  id="input-topmenuli" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-topmenlihover">{{ text_toplinkhover }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menulihover" value="{{ module_inovaby_menulihover }}"  id="input-topmenlihover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-topmenbghover">{{ text_backgroundhover }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menulibghover" value="{{ module_inovaby_menulibghover }}"  id="input-topmenbghover" size="6" class="color {required:false,hash:true} form-control"   />
+                                </div>
+                            </div>
+                         </div>
+                         <legend><span data-toggle="tooltip" data-html="true" title="">{{ text_dropdown }}</span></legend>
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-menuinnerbg">{{ text_background }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menuinnerbg" value="{{ module_inovaby_menuinnerbg }}"  id="input-menuinnerbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-menuinnerbghover">{{ text_backgroundhover }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menuinnerbghover" value="{{ module_inovaby_menuinnerbghover }}"  id="input-menuinnerbghover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+                          <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-menuinnerlink">{{ text_toplink }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menuinnerlink" value="{{ module_inovaby_menuinnerlink }}"  id="input-menuinnerlink" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-menuinnerlinkhover">{{ text_toplinkhover }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menuinnerlinkhover" value="{{ module_inovaby_menuinnerlinkhover }}"  id="input-menuinnerlinkhover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+                         <legend><span data-toggle="tooltip" data-html="true" title="">{{ text_seeall }}</span></legend>
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-menushowallbg">{{ text_background }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menushowallbg" value="{{ module_inovaby_menushowallbg }}"  id="input-menushowallbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-menushowallbghover">{{ text_backgroundhover }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menushowallbghover" value="{{ module_inovaby_menushowallbghover }}"  id="input-menushowallbghover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-menushowalllink">{{ text_toplink }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menushowalllink" value="{{ module_inovaby_menushowalllink }}"  id="input-menushowalllink" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-menushowalllinkhover">{{ text_toplinkhover }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_menushowalllinkhover" value="{{ module_inovaby_menushowalllinkhover }}"  id="input-menushowalllinkhover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="tab-pane" id="tab-product_list">
+                    <legend><span data-toggle="tooltip" data-html="true" title="{{ help_product_list }}">{{ text_product_list }}</span></legend>
+                    <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-productlistbg">{{ text_background }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_list_bg" value="{{ module_inovaby_product_list_bg }}"  id="input-productlistbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_list_bordersize"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_border }}</span></label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_list_bordersize" value="{{ module_inovaby_product_list_bordersize }}" placeholder="{{ text_topborderline }}"  id="input-product_list_bordersize" size="6" class="form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_list_bordercolor">{{ text_bordercolor }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_list_bordercolor" value="{{ module_inovaby_product_list_bordercolor }}"  id="input-product_list_bordercolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-productlistname">{{ text_product_name }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_name" value="{{ module_inovaby_product_name }}"  id="input-productlistname" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_list_description">{{ text_product_description }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_description" value="{{ module_inovaby_product_description }}"  id="input-product_list_description" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_list_price">{{ text_product_price }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_price" value="{{ module_inovaby_product_price }}"  id="input-product_list_price" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                    </div>
+                    <legend><span data-toggle="tooltip"  title="{{ help_btgroup }}">{{ text_btgroup }}</span></legend>
+                    <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-productlistbtgroup">{{ text_background }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_btgroup" value="{{ module_inovaby_product_btgroup }}"  id="input-productlistbtgroup" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_btgroupborder"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_border }}</span></label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_btgroupborder" value="{{ module_inovaby_product_btgroupborder }}" placeholder="{{ text_topborderline }}"  id="input-product_btgroupborder" size="6" class="form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_btgroupcolor">{{ text_bordercolor }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_btgroupcolor" value="{{ module_inovaby_product_btgroupcolor }}"  id="input-product_btgroupcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                    </div>
+                    <legend><span data-toggle="tooltip"  title="">{{ text_add_to_cart }}</span></legend>
+                    <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-product_cartbg">{{ text_background }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_cartbg" value="{{ module_inovaby_product_cartbg }}"  id="input-product_cartbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_cartbghover">{{ text_backgroundhover }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_cartbghover" value="{{ module_inovaby_product_cartbghover }}"  id="input-product_cartbghover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-product_cartcolor">{{ text_color }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_cartcolor" value="{{ module_inovaby_product_cartcolor }}"  id="input-product_cartcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_cartcolorhover">{{ text_hover }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_cartcolorhover" value="{{ module_inovaby_product_cartcolorhover }}"  id="input-product_cartcolorhover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                    </div>
+                    <legend><span data-toggle="tooltip"  title="">{{ text_wishlist }}</span></legend>
+                    <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-product_wishlistborder"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_border_left }}</span></label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_wishlistborder" value="{{ module_inovaby_product_wishlistborder }}" placeholder="{{ text_topborderline }}"  id="input-product_wishlistborder" size="6" class="form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_wishlistbordercolor">{{ text_bordercolor }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_wishlistbordercolor" value="{{ module_inovaby_product_wishlistbordercolor }}"  id="input-product_wishlistbordercolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-product_wishlistbg">{{ text_background }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_wishlistbg" value="{{ module_inovaby_product_wishlistbg }}"  id="input-product_wishlistbg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_wishlistbghover">{{ text_backgroundhover }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_wishlistbghover" value="{{ module_inovaby_product_wishlistbghover }}"  id="input-product_wishlistbghover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-product_wishlistcolor">{{ text_color }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_wishlistcolor" value="{{ module_inovaby_product_wishlistcolor }}"  id="input-product_wishlistcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-product_cartcolorhover">{{ text_hover }}</label>
+                               <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_product_wishlistcolorhover" value="{{ module_inovaby_product_wishlistcolorhover }}"  id="input-product_wishlistcolorhover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                    </div>
+                   </div>
+                <div class="tab-pane" id="tab-footer">
+                         <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-footer_border"><span data-toggle="tooltip" title="{{ help_topborderline }}">{{ text_topborderline }}</span></label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_footer_border" value="{{ module_inovaby_footer_border }}" placeholder="{{ text_topborderline }}"  id="input-footer_border" size="6" class="form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label">{{ text_topcolorline }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_footer_bordercolor" value="{{ module_inovaby_footer_bordercolor }}"  id="input-footer_bordercolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label" for="input-footer_bg">{{ text_background }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_footer_bg" value="{{ module_inovaby_footer_bg }}"  id="input-footer_bg" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label">{{ text_color }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_footer_textcolor" value="{{ module_inovaby_footer_textcolor }}"  id="input-footer_textcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 control-label">{{ text_titlecolor }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_footer_titlecolor" value="{{ module_inovaby_footer_titlecolor }}"  id="input-footer_titlecolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label" for="input-footer_linkcolor">{{ text_linkcolor }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_footer_linkcolor" value="{{ module_inovaby_footer_linkcolor }}"  id="input-footer_linkcolor" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                                <label class="col-sm-2 control-label">{{ text_linkhover }}</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="module_inovaby_footer_linkhover" value="{{ module_inovaby_footer_linkhover }}"  id="input-footer_linkhover" size="6" class="color {required:false,hash:true} form-control"  />
+                                </div>
+                            </div>
+                           </div>		
+                         </div>
+               <div class="tab-pane" id="tab-footer-social">							
+						    <div class="form-group">
+							 <div class="row">
+                <label class="col-sm-2 control-label" for="input-blog-link"><i class="fa fa-wordpress fa-2x" aria-hidden="true" style="color:#00405d"></i><!-- {{ entry_blog_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_blog_link" value="{{ module_inovaby_blog_link }}" placeholder="{{ entry_blog_link }}" id="input-blog-link" class="form-control" />
+                </div>
+              </div>
+           </div>
+               <div class="form-group">
+			    <div class="row">
+                <label class="col-sm-2 control-label" for="input-youtube-link"><i class="fa fa-youtube-square fa-2x" aria-hidden="true" style="color:#ED3833"></i> <!-- {{ entry_youtube_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_youtube_link" value="{{ module_inovaby_youtube_link }}" placeholder="{{ entry_youtube_link }}" id="input-youtube-link" class="form-control" />
+                </div>
+              </div>
+          </div>
+              <div class="form-group">
+			   <div class="row">
+                <label class="col-sm-2 control-label" for="input-facebook-link"><i class="fa fa-facebook-square fa-2x" aria-hidden="true" style="color:#4267b2"></i><!-- {{ entry_facebook_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_facebook_link" value="{{ module_inovaby_facebook_link }}" placeholder="{{ entry_facebook_link }}" id="input-facebook-link" class="form-control" />
+                </div>
+              </div>
+           </div>
+               <div class="form-group">
+			    <div class="row">
+                <label class="col-sm-2 control-label" for="input-twitter-link"><i class="fa fa-twitter-square fa-2x" aria-hidden="true" style="color:#38A1F3"></i><!-- {{ entry_twitter_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_twitter_link" value="{{ module_inovaby_twitter_link }}" placeholder="{{ entry_twitter_link }}" id="input-twitter-link" class="form-control" />
+                </div>
+              </div>
+            </div>
+              <div class="form-group">
+			   <div class="row">
+                <label class="col-sm-2 control-label" for="input-pinterest-link"><i class="fa fa-pinterest-square fa-2x" aria-hidden="true" style="color:#BD081C"></i><!-- {{ entry_pinterest_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_pinterest_link" value="{{ module_inovaby_pinterest_link }}" placeholder="{{ entry_pinterest_link }}" id="input-pinterest-link" class="form-control" />
+                </div>
+              </div>
+             </div>
+              <div class="form-group">
+			   <div class="row">
+                <label class="col-sm-2 control-label" for="input-googlep-link"><i class="fa fa-google-plus-square fa-2x" aria-hidden="true" style="color:#dc4e41"></i><!-- {{ entry_googlep_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_googlep_link" value="{{ module_inovaby_googlep_link }}" placeholder="{{ entry_googlep_link }}" id="input-googlep-link" class="form-control" />
+                </div>
+              </div>
+            </div>
+              <div class="form-group">
+			   <div class="row">
+                <label class="col-sm-2 control-label" for="input-linkedin-link"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true" style="color:#0077B5"></i><!-- {{ entry_linkedin_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_linkedin_link" value="{{ module_inovaby_linkedin_link }}" placeholder="{{ entry_linkedin_link }}" id="input-linkedin-link" class="form-control" />
+                </div>
+              </div>
+              </div>
+              <div class="form-group">
+			   <div class="row">
+                <label class="col-sm-2 control-label" for="input-instagram-link"><i class="fa fa-instagram fa-2x" aria-hidden="true" style="color:#e4405f"></i><!-- {{ entry_instagram_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_instagram_link" value="{{ module_inovaby_instagram_link }}" placeholder="{{ entry_instagram_link }}" id="input-instagram-link" class="form-control" />
+                </div>
+              </div>
+           </div>
+              <div class="form-group">
+			   <div class="row">
+                <label class="col-sm-2 control-label" for="input-whatsapp-link"><i class="fa fa-whatsapp fa-2x" aria-hidden="true" style="background-color:#43d854;color:#FFF"></i><!-- {{ entry_whatsapp_link }} --></label>
+                <div class="col-sm-2">
+                  <input type="text" name="module_inovaby_whatsapp_link" value="{{ module_inovaby_whatsapp_link }}" placeholder="{{ entry_whatsapp_link }}" id="input-whatsapp-link" class="form-control" />
+               </div>
+                            </div>
+                            </div>
+                           </div>
+
+
+
+
+
+
+
+
+
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-custom-css">
+              <div class="row">
+                <div class="col-sm-2">
+                    <ul class="nav nav-pills nav-stacked" id="tab-custom-css">
+                        <li class="active"><a href="#tab-custom-css-final" data-toggle="tab"> {{ text_custom_css }}</a></li>
+                        <li><a href="#tab-custom-javascript" data-toggle="tab">{{ text_custom_javascript }}</a></li>
+                        <li><a href="#tab-custom-code-final" data-toggle="tab">{{ text_custom_code }}</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-10">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="tab-custom-css-final">
+	                    <div class="form-group">
+                            <div class="row">
+                            <label class="col-sm-2 control-label">{{ entry_status }}</label>
+                                <div class="col-sm-10">
+                                    <select name="module_inovaby_custom_css" id="input-module_inovaby_custom_css" class="form-control">
+                                    {% if module_inovaby_custom_css %}
+                                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                                        <option value="0">{{ text_disabled }}</option>
+                                     {% else %}
+                                        <option value="1">{{ text_enabled }}</option>
+                                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                                   {% endif %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                      <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ text_help_css }}">{{ text_content_css }}</span></label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" style="height:250px" name="module_inovaby_custom_css_content">{{ module_inovaby_custom_css_content }}</textarea>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div  class="tab-pane" id="tab-custom-javascript">
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="col-sm-2 control-label">{{ entry_status }}</label>
+                              <div class="col-sm-10">
+                                <select name="module_inovaby_custom_javascript" id="input-module_inovaby_custom_javascript" class="form-control">
+                                {% if module_inovaby_custom_javascript %}
+                                    <option value="1" selected="selected">{{ text_enabled }}</option>
+                                    <option value="0">{{ text_disabled }}</option>
+                                {% else %}
+                                    <option value="1">{{ text_enabled }}</option>
+                                    <option value="0" selected="selected">{{ text_disabled }}</option>
+                                {% endif %}
+                                </select>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                            <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ text_help_javascript }}">{{ text_content_javascript }}</span></label>
+                                <div class="col-sm-10">
+                                	 <textarea class="form-control" style="height:250px" name="module_inovaby_custom_javascript_content">{{ module_inovaby_custom_javascript_content }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="tab-pane" id="tab-custom-code-final">
+	                    <div class="form-group">
+                            <div class="row">
+                            <label class="col-sm-2 control-label">{{ entry_status }}</label>
+                                <div class="col-sm-10">
+                                    <select name="module_inovaby_custom_code" id="input-module_inovaby_custom_code" class="form-control">
+                                    {% if  module_inovaby_custom_code %}
+                                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                                        <option value="0">{{ text_disabled }}</option>
+                                    {% else %}
+                                        <option value="1">{{ text_enabled }}</option>
+                                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                                    {% endif %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                      <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ text_help_code }}">{{ text_content_code }}</span></label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" style="height:250px" name="module_inovaby_custom_code_content">{{ module_inovaby_custom_code_content }}</textarea>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+   </div>
+ </div>
+ <script type="text/javascript" src="view/javascript/jscolor/jscolor.js"></script>
+ </div>
+{{ footer }}
+

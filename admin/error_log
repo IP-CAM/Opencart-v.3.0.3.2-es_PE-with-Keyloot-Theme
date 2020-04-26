@@ -1,0 +1,11 @@
+[21-Apr-2020 05:56:01 UTC] PHP Fatal error:  Uncaught Exception: Error: Could not load model extension/module/d_social_login! in /home/grupodal/public_html/system/engine/loader.php:89
+Stack trace:
+#0 /home/grupodal/public_html/admin/controller/extension/module/d_social_login.php(401): Loader->model('extension/modul...')
+#1 /home/grupodal/public_html/system/engine/action.php(79): ControllerExtensionModuleDSocialLogin->install(Array)
+#2 /home/grupodal/public_html/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#3 /home/grupodal/public_html/admin/controller/extension/extension/module.php(31): Loader->controller('extension/modul...')
+#4 /home/grupodal/public_html/system/engine/action.php(79): ControllerExtensionExtensionModule->install()
+#5 /home/grupodal/public_html/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+#6 /home/grupodal/public_html/system/engine/action.php(79): ControllerStartupRouter->index()
+#7 /home/grupodal/public_html/system/engine/router.php(67): Action->execute(Object(Registry))
+#8  in /home/grupodal/public_html/system/engine/loader.php on line 89
