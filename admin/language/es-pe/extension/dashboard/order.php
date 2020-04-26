@@ -1,17 +1,17 @@
 <?php
 // Heading
-$_['heading_title']    = 'Total Orders';
+$_['heading_title']    = 'Total de Ordenes';
 
 // Text
-$_['text_extension']   = 'Extensions';
-$_['text_success']     = 'Success: You have modified dashboard orders!';
+$_['text_extension']   = 'Extensiones';
+$_['text_success']     = 'Success: Tu dashboard de pedidos a sido modificado!';
 $_['text_edit']        = 'Edit Dashboard Orders';
-$_['text_view']        = 'View more...';
+$_['text_view']        = 'Ver m&aacute;s...';
 
 // Entry
-$_['entry_status']     = 'Status';
-$_['entry_sort_order'] = 'Sort Order';
-$_['entry_width']      = 'Width';
+$_['entry_status']     = 'Estado';
+$_['entry_sort_order'] = 'Orden';
+$_['entry_width']      = 'Ancho';
 
 // Error
-$_['error_permission'] = 'Warning: You do not have permission to modify dashboard orders!';
+$_['error_permission'] = 'Warning: Tu no tienes permiso para modificar el dashboard de pedidos!';
