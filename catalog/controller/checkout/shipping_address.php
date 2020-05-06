@@ -12,28 +12,30 @@ class ControllerCheckoutShippingAddress extends Controller {
 		$this->load->model('account/address');
 
 		$data['addresses'] = $this->model_account_address->getAddresses();
+        $fields = [
+            'postcode',
+            'country_id',
+            'zone_id',
+            'province_id',
+            'district_id',
+        ];
+        foreach($fields as $field){
+            if (isset($this->session->data['shipping_address'][$field])) {
+    			$data[$field] = $this->session->data['shipping_address'][$field];
+    		} else {
+    			$data[$field] = '';
+    		}
+        }
 
-		if (isset($this->session->data['shipping_address']['postcode'])) {
-			$data['postcode'] = $this->session->data['shipping_address']['postcode'];
-		} else {
-			$data['postcode'] = '';
-		}
-
-		if (isset($this->session->data['shipping_address']['country_id'])) {
-			$data['country_id'] = $this->session->data['shipping_address']['country_id'];
-		} else {
-			$data['country_id'] = $this->config->get('config_country_id');
-		}
-
-		if (isset($this->session->data['shipping_address']['zone_id'])) {
-			$data['zone_id'] = $this->session->data['shipping_address']['zone_id'];
-		} else {
-			$data['zone_id'] = '';
-		}
 
 		$this->load->model('localisation/country');
-
 		$data['countries'] = $this->model_localisation_country->getCountries();
+
+        $this->load->model('localisation/zone');
+		$data['zones'] = $this->model_localisation_zone->getZonesByCountryId($data['country_id']);
+
+		$data['provinces'] = [];
+		$data['districtes'] = [];
 
 		// Custom Fields
 		$data['custom_fields'] = array();
@@ -53,7 +55,7 @@ class ControllerCheckoutShippingAddress extends Controller {
 		} else {
 			$data['shipping_address_custom_field'] = array();
 		}
-		
+
 		$this->response->setOutput($this->load->view('checkout/shipping_address', $data));
 	}
 
@@ -125,17 +127,17 @@ class ControllerCheckoutShippingAddress extends Controller {
 					$json['error']['address_1'] = $this->language->get('error_address_1');
 				}
 
-				if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-					$json['error']['city'] = $this->language->get('error_city');
-				}
+				#if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
+				#	$json['error']['city'] = $this->language->get('error_city');
+				#}
 
 				$this->load->model('localisation/country');
 
 				$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 
-				if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
-					$json['error']['postcode'] = $this->language->get('error_postcode');
-				}
+				#if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+				#	$json['error']['postcode'] = $this->language->get('error_postcode');
+				#}
 
 				if ($this->request->post['country_id'] == '') {
 					$json['error']['country'] = $this->language->get('error_country');
@@ -143,6 +145,14 @@ class ControllerCheckoutShippingAddress extends Controller {
 
 				if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
 					$json['error']['zone'] = $this->language->get('error_zone');
+				}
+
+                if (!isset($this->request->post['province_id']) || $this->request->post['province_id'] == '' || !is_numeric($this->request->post['province_id'])) {
+					$json['error']['province'] = $this->language->get('error_province');
+				}
+
+                if (!isset($this->request->post['district_id']) || $this->request->post['district_id'] == '' || !is_numeric($this->request->post['district_id'])) {
+					$json['error']['district'] = $this->language->get('error_district');
 				}
 
 				// Custom field validation

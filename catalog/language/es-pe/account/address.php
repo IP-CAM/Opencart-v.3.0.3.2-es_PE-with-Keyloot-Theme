@@ -1,22 +1,29 @@
 <?php
-$_['heading_title'] 	=  'Directorio';
+$_['heading_title'] 	=  'Direcciones';
 $_['text_account'] 	    =  'Cuenta';
-$_['text_address_book'] =  'Entradas de la libreta de direcciones';
+$_['text_addresinfo'] 	=  'Direccion detallada (Solo valido en PERÚ)';
+$_['text_address_book'] =  'Direcciones de entregas';
 $_['text_address_add'] 	=  'Añadir dirección';
 $_['text_address_edit'] =  'Editar dirección';
 $_['text_add'] 	        =  'Tu dirección ha sido añadida correctamente';
 $_['text_edit'] 	    =  'Su dirección ha sido actualizada correctamente.';
 $_['text_delete'] 	    =  'Tu dirección ha sido eliminada correctamente.';
 $_['text_empty'] 	    =  'No tiene direcciones en su cuenta.';
-$_['entry_firstname'] 	=  'Nombre';
-$_['entry_lastname'] 	=  'Apellido';
-$_['entry_company'] 	=  'Razon Social';
+$_['entry_firstname'] 	=  'Identificador';
+$_['entry_lastname'] 	=  'Quien recibe el producto?';
+$_['entry_company'] 	=  'Comentario';
+
+$_['entry_province'] 	=  'Provincia';
+$_['entry_district'] 	=  'Distrito';
+
+
 $_['entry_address_1'] 	=  'Dirección 1';
 $_['entry_address_2'] 	=  'Dirección 2';
 $_['entry_postcode'] 	=  'Código postal';
-$_['entry_city'] 	    =  'Ciudad';
+$_['entry_city'] 	    =  'Referencia del lugar';
 $_['entry_country'] 	=  'País';
-$_['entry_zone'] 	    =  'Región / Estado';
+$_['entry_zone'] 	    =  'Departamento';
+$_['entry_pro'] 	    =  'Región / Provincia';
 $_['entry_default'] 	=  'Dirección predeterminada';
 $_['error_delete'] 	    =  'Advertencia: ¡Debe tener al menos una dirección!';
 $_['error_default'] 	=  'Advertencia: ¡No puede eliminar su dirección predeterminada!';

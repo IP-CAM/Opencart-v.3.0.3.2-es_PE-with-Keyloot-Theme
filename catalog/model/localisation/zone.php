@@ -5,8 +5,8 @@ class ModelLocalisationZone extends Model {
 
 		return $query->row;
 	}
-
-	public function getZonesByCountryId($country_id) {
+    
+    public function getZonesByCountryId($country_id) {
 		$zone_data = $this->cache->get('zone.' . (int)$country_id);
 
 		if (!$zone_data) {

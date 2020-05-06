@@ -54,18 +54,18 @@ class ControllerCheckoutCheckout extends Controller {
 			'href' => $this->url->link('checkout/checkout', '', true)
 		);
 
-		$data['text_checkout_option'] = sprintf($this->language->get('text_checkout_option'), 1);
-		$data['text_checkout_account'] = sprintf($this->language->get('text_checkout_account'), 2);
-		$data['text_checkout_payment_address'] = sprintf($this->language->get('text_checkout_payment_address'), 2);
-		$data['text_checkout_shipping_address'] = sprintf($this->language->get('text_checkout_shipping_address'), 3);
-		$data['text_checkout_shipping_method'] = sprintf($this->language->get('text_checkout_shipping_method'), 4);
+		$data['text_checkout_option']               = sprintf($this->language->get('text_checkout_option'), 1);
+		$data['text_checkout_account']              = sprintf($this->language->get('text_checkout_account'), 2);
+		$data['text_checkout_payment_address']      = sprintf($this->language->get('text_checkout_payment_address'), 2);
+		$data['text_checkout_shipping_address']     = sprintf($this->language->get('text_checkout_shipping_address'), 3);
+		$data['text_checkout_shipping_method']      = sprintf($this->language->get('text_checkout_shipping_method'), 4);
 		
 		if ($this->cart->hasShipping()) {
-			$data['text_checkout_payment_method'] = sprintf($this->language->get('text_checkout_payment_method'), 5);
-			$data['text_checkout_confirm'] = sprintf($this->language->get('text_checkout_confirm'), 6);
+			$data['text_checkout_payment_method']   = sprintf($this->language->get('text_checkout_payment_method'), 5);
+			$data['text_checkout_confirm']          = sprintf($this->language->get('text_checkout_confirm'), 6);
 		} else {
-			$data['text_checkout_payment_method'] = sprintf($this->language->get('text_checkout_payment_method'), 3);
-			$data['text_checkout_confirm'] = sprintf($this->language->get('text_checkout_confirm'), 4);	
+			$data['text_checkout_payment_method']   = sprintf($this->language->get('text_checkout_payment_method'), 3);
+			$data['text_checkout_confirm']          = sprintf($this->language->get('text_checkout_confirm'), 4);
 		}
 
 		if (isset($this->session->data['error'])) {
@@ -91,20 +91,15 @@ class ControllerCheckoutCheckout extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
-
 		$this->response->setOutput($this->load->view('checkout/checkout', $data));
 	}
 
 	public function country() {
 		$json = array();
-
 		$this->load->model('localisation/country');
-
 		$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
-
 		if ($country_info) {
 			$this->load->model('localisation/zone');
-
 			$json = array(
 				'country_id'        => $country_info['country_id'],
 				'name'              => $country_info['name'],
@@ -116,7 +111,42 @@ class ControllerCheckoutCheckout extends Controller {
 				'status'            => $country_info['status']
 			);
 		}
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+    public function zone(){
+        $json = array();
+        $this->load->model('localisation/zone');
+        $zone_info = $this->model_localisation_zone->getZone($this->request->get['zone_id']);
+        if($zone_info){
+            $this->load->model('localisation/province');
+            $json = array(
+                'zone_id'           => $zone_info['zone_id'],
+                'name'              => $zone_info['name'],
+                'code'              => $zone_info['code'],
+                'province'          => $this->model_localisation_province->getProvinceByZoneId($this->request->get['zone_id']),
+                'status'            => $zone_info['status'],
+            );
+        }
 
+        $this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+    }
+
+    public function province() {
+		$json = array();
+		$this->load->model('localisation/province');
+		$province_info = $this->model_localisation_province->getProvince($this->request->get['province_id']);
+		if ($province_info) {
+			$this->load->model('localisation/district');
+            $json = array(
+                'province_id'       => $province_info['province_id'],
+                'name'              => $province_info['name'],
+                'code'              => $province_info['code'],
+                'district'          => $this->model_localisation_district->getDistrictByProvinceId($this->request->get['province_id']),
+                'status'            => $province_info['status'],
+            );
+		}
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}

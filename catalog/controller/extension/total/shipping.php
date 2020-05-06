@@ -11,14 +11,33 @@ class ControllerExtensionTotalShipping extends Controller {
 			}
 
 			$this->load->model('localisation/country');
-
 			$data['countries'] = $this->model_localisation_country->getCountries();
-
 			if (isset($this->session->data['shipping_address']['zone_id'])) {
 				$data['zone_id'] = $this->session->data['shipping_address']['zone_id'];
 			} else {
 				$data['zone_id'] = '';
 			}
+            /* zone */
+            $this->load->model('localisation/zone');
+			$data['zones'] = $this->model_localisation_zone->getZonesByCountryId($data['country_id']);
+			if (isset($this->session->data['shipping_address']['province_id'])) {
+				$data['province_id'] = $this->session->data['shipping_address']['province_id'];
+			} else {
+				$data['province_id'] = '';
+			}
+
+            /* province */
+            /*
+            $this->load->model('localisation/province');
+			$data['provinces'] = $this->model_localisation_province->getProvinces();
+			if (isset($this->session->data['shipping_address']['district_id'])) {
+				$data['district_id'] = $this->session->data['shipping_address']['district_id'];
+			} else {
+				$data['district_id'] = '';
+			}
+            */
+
+
 
 			if (isset($this->session->data['shipping_address']['postcode'])) {
 				$data['postcode'] = $this->session->data['shipping_address']['postcode'];
@@ -58,8 +77,8 @@ class ControllerExtensionTotalShipping extends Controller {
 		}
 
 		$this->load->model('localisation/country');
-
 		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
+
 
 		if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
 			$json['error']['postcode'] = $this->language->get('error_postcode');
@@ -105,6 +124,14 @@ class ControllerExtensionTotalShipping extends Controller {
 				'zone_code'      => $zone_code,
 				'country_id'     => $this->request->post['country_id'],
 				'country'        => $country,
+
+                #'province_id'     => $this->request->post['country_id'],
+				#'country'        => $country,
+
+                #'country_id'     => $this->request->post['country_id'],
+				#'country'        => $country,
+
+
 				'iso_code_2'     => $iso_code_2,
 				'iso_code_3'     => $iso_code_3,
 				'address_format' => $address_format
@@ -205,6 +232,42 @@ class ControllerExtensionTotalShipping extends Controller {
 			);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+    public function zone(){
+        $json = array();
+        $this->load->model('localisation/zone');
+        $zone_info = $this->model_localisation_zone->getZone($this->request->get['zone_id']);
+        if($zone_info){
+            $this->load->model('localisation/province');
+            $json = array(
+                'zone_id'           => $zone_info['zone_id'],
+                'name'              => $zone_info['name'],
+                'code'              => $zone_info['code'],
+                'province'          => $this->model_localisation_province->getProvinceByZoneId($this->request->get['zone_id']),
+                'status'            => $zone_info['status'],
+            );
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+    }
+
+    public function province() {
+		$json = array();
+		$this->load->model('localisation/province');
+		$province_info = $this->model_localisation_province->getProvince($this->request->get['province_id']);
+		if ($province_info) {
+			$this->load->model('localisation/district');
+            $json = array(
+                'province_id'       => $province_info['province_id'],
+                'name'              => $province_info['name'],
+                'code'              => $province_info['code'],
+                'district'          => $this->model_localisation_district->getDistrictByProvinceId($this->request->get['province_id']),
+                'status'            => $province_info['status'],
+            );
+		}
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}

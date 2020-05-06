@@ -7,7 +7,7 @@ $_['text_coupon']   = 'Cupón (%s)';
 $_['text_success']  = 'Éxito: ¡Su cupón de descuento ha sido aplicado!';
 
 // Entry
-$_['entry_coupon']  = 'Teclee su cupón aquí';
+$_['entry_coupon']  = 'Ingrese el codigo del Cupon';
 
 // Error
 $_['error_coupon']  = 'Advertencia: ¡El Cupón no es válido, caducó o alcanzó el límite de uso!';

@@ -118,4 +118,43 @@ class ControllerAccountAccount extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+    public function zone(){
+        $json = array();
+        $this->load->model('localisation/zone');
+        $zone_info = $this->model_localisation_zone->getZone($this->request->get['zone_id']);
+        if($zone_info){
+            $this->load->model('localisation/province');
+            $json = array(
+                'zone_id'           => $zone_info['zone_id'],
+                'name'              => $zone_info['name'],
+                'code'              => $zone_info['code'],
+                'province'          => $this->model_localisation_province->getProvinceByZoneId($this->request->get['zone_id']),
+                'status'            => $zone_info['status'],
+            );
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+    }
+
+    public function province() {
+		$json = array();
+		$this->load->model('localisation/province');
+		$province_info = $this->model_localisation_province->getProvince($this->request->get['province_id']);
+		if ($province_info) {
+			$this->load->model('localisation/district');
+            $json = array(
+                'province_id'       => $province_info['province_id'],
+                'name'              => $province_info['name'],
+                'code'              => $province_info['code'],
+                'district'          => $this->model_localisation_district->getDistrictByProvinceId($this->request->get['province_id']),
+                'status'            => $province_info['status'],
+            );
+		}
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+
 }

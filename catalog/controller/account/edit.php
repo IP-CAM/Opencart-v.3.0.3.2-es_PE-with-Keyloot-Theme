@@ -45,40 +45,20 @@ class ControllerAccountEdit extends Controller {
 			'href' => $this->url->link('account/edit', '', true)
 		);
 
-		if (isset($this->error['warning'])) {
-			$data['error_warning'] = $this->error['warning'];
-		} else {
-			$data['error_warning'] = '';
-		}
-
-		if (isset($this->error['firstname'])) {
-			$data['error_firstname'] = $this->error['firstname'];
-		} else {
-			$data['error_firstname'] = '';
-		}
-
-		if (isset($this->error['lastname'])) {
-			$data['error_lastname'] = $this->error['lastname'];
-		} else {
-			$data['error_lastname'] = '';
-		}
-
-		if (isset($this->error['email'])) {
-			$data['error_email'] = $this->error['email'];
-		} else {
-			$data['error_email'] = '';
-		}
-
-		if (isset($this->error['telephone'])) {
-			$data['error_telephone'] = $this->error['telephone'];
-		} else {
-			$data['error_telephone'] = '';
-		}
-
-		if (isset($this->error['custom_field'])) {
-			$data['error_custom_field'] = $this->error['custom_field'];
-		} else {
-			$data['error_custom_field'] = array();
+		$fields_error = [
+			'warning',
+			'firstname',
+			'lastname',
+			'email',
+			'telephone',
+			'custom_field',
+		];
+		foreach($fields_error as $field){
+			if (isset($this->error[$field])) {
+				$data["error_{$field}"] = $this->error[$field];
+			} else {
+				$data["error_{$field}"] = '';
+			}	
 		}
 
 		$data['action'] = $this->url->link('account/edit', '', true);
@@ -87,37 +67,28 @@ class ControllerAccountEdit extends Controller {
 			$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
 		}
 
-		if (isset($this->request->post['firstname'])) {
-			$data['firstname'] = $this->request->post['firstname'];
-		} elseif (!empty($customer_info)) {
-			$data['firstname'] = $customer_info['firstname'];
-		} else {
-			$data['firstname'] = '';
+		$fields_error = [
+			'warning',
+			'firstname',
+			'lastname',
+			'email',
+			'telephone',
+			'taxid',
+			'bpartnername',
+		];
+		foreach($fields_error as $field){
+
+			if (isset($this->request->post[$field])) {
+				$data[$field] = $this->request->post[$field];
+			} elseif (!empty($customer_info)) {
+				$data[$field] = $customer_info[$field];
+			} else {
+				$data[$field] = '';
+			}
 		}
 
-		if (isset($this->request->post['lastname'])) {
-			$data['lastname'] = $this->request->post['lastname'];
-		} elseif (!empty($customer_info)) {
-			$data['lastname'] = $customer_info['lastname'];
-		} else {
-			$data['lastname'] = '';
-		}
+		
 
-		if (isset($this->request->post['email'])) {
-			$data['email'] = $this->request->post['email'];
-		} elseif (!empty($customer_info)) {
-			$data['email'] = $customer_info['email'];
-		} else {
-			$data['email'] = '';
-		}
-
-		if (isset($this->request->post['telephone'])) {
-			$data['telephone'] = $this->request->post['telephone'];
-		} elseif (!empty($customer_info)) {
-			$data['telephone'] = $customer_info['telephone'];
-		} else {
-			$data['telephone'] = '';
-		}
 
 		// Custom Fields
 		$data['custom_fields'] = array();

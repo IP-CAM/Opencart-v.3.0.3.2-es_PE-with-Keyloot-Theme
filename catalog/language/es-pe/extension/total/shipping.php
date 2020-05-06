@@ -1,10 +1,10 @@
 <?php
 // Heading
-$_['heading_title']        = 'Estimado de Envío e Impuestos';
+$_['heading_title']        = 'Calcular Costo de Envio';
 
 // Text
-$_['text_success']         = 'Éxito: Su estimado de envío ha sido aplicado!';
-$_['text_shipping']        = 'Teclee el destino para obtener un estimado de envío.';
+$_['text_success']         = 'Éxito: El cargo de envio a sido aplicado!';
+$_['text_shipping']        = 'Ingrese su distrito para obtener un estimado de envío.';
 $_['text_shipping_method'] = 'Por favor seleccione el método de envío para usar en este pedido.';
 
 // Entry
